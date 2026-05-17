@@ -161,3 +161,6 @@ async function saveScores() {
             .eq('image', mashList[i]);
     }
 }
+
+window.addscore = addscore;
+window.addscore2 = addscore2;
