@@ -117,6 +117,8 @@ function addscore2() {
     let [i1, i2] = getTwoUniqueCards(); // i1 and i2 are 1-32
     newcard = new Card(i1, 0);
     newcard2 = new Card(i2, 0);
+    document.getElementById("card").src = newcard.present();
+    document.getElementById("card2").src = newcard2.present();
     updateElo();
     saveScores();
 }
