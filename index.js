@@ -13,7 +13,7 @@ class Card {
         this.score = score;
     }
     present() {
-        return 'images/photo' + this.image + '.JPG';
+        return mashList[this.image - min];
     }
 }
 
@@ -91,9 +91,10 @@ function addscore() {
         }
     }
     console.log(scoreList);
-    newcard = new Card(getRandomInt(min, max), 0); 
+    let [i1, i2] = getTwoUniqueCards();
+    newcard = new Card(i1, 0);
+    newcard2 = new Card(i2, 0);
     document.getElementById("card").src = newcard.present();
-    newcard2 = new Card(getRandomInt(min, max), 0);     
     document.getElementById("card2").src = newcard2.present();
     updateElo();
     saveScores();
@@ -113,10 +114,9 @@ function addscore2() {
         }
     }
     console.log(scoreList);
-    newcard = new Card(getRandomInt(min, max), 0); 
-    document.getElementById("card").src = newcard.present();
-    newcard2 = new Card(getRandomInt(min, max), 0);     
-    document.getElementById("card2").src = newcard2.present();
+    let [i1, i2] = getTwoUniqueCards(); // i1 and i2 are 1-32
+    newcard = new Card(i1, 0);
+    newcard2 = new Card(i2, 0);
     updateElo();
     saveScores();
 }
