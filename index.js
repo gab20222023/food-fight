@@ -1,7 +1,7 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
-const supabaseUrl = 'YOUR_PROJECT_URL'
-const supabaseKey = 'YOUR_ANON_KEY'
+const supabaseUrl = 'https://cvoqnxxyqmqetkmqhxnb.supabase.co'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN2b3FueHh5cW1xZXRrbXFoeG5iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkwMTAzNzQsImV4cCI6MjA5NDU4NjM3NH0.RuUSbQJ9M3g__WivRYHP-Zu14OykZRLVx-fX76D2kFc'
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 const min = 1;
@@ -40,8 +40,20 @@ document.getElementById("card").src = newcard.present();
 document.getElementById("card2").src = newcard2.present();
 */
 
+function getTwoUniqueCards() {
+    let index1 = getRandomInt(min, max);
+    let index2;
+    do {
+        index2 = getRandomInt(min, max);
+    } while (index2 === index1);
+    return [index1, index2];
+}
+
 let mashList = [];
 let scoreList = [];
+
+let newcard;
+let newcard2;
 
 async function loadScores() {
     const { data, error } = await supabase
@@ -84,6 +96,7 @@ function addscore() {
     newcard2 = new Card(getRandomInt(min, max), 0);     
     document.getElementById("card2").src = newcard2.present();
     updateElo();
+    saveScores();
 }
 
 function addscore2() {
@@ -105,6 +118,7 @@ function addscore2() {
     newcard2 = new Card(getRandomInt(min, max), 0);     
     document.getElementById("card2").src = newcard2.present();
     updateElo();
+    saveScores();
 }
 function updateElo() {
     for (let i = 0; i <= max - min; i++) {
