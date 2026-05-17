@@ -64,6 +64,8 @@ async function loadScores() {
     if (data) {
         mashList = data.map(row => row.image);
         scoreList = data.map(row => row.score);
+
+    await supabase.from('visits').insert({ visited_at: new Date() });
     }
 
     // now it's safe to show the first cards
