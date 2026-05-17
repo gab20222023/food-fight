@@ -162,5 +162,5 @@ async function saveScores() {
     }
 }
 
-window.addscore = addscore;
-window.addscore2 = addscore2;
+document.getElementById("btn1").addEventListener("click", addscore);
+document.getElementById("btn2").addEventListener("click", addscore2);
